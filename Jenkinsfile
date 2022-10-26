@@ -32,8 +32,8 @@ pipeline {
         stage('Static code analysis') {
             steps {
                 script {
-                    def sonarscannerParams = "-Dsonar.projectName=AttendanceApp -Dsonar.projectKey=AttendanceApp -Dsonar.sources=. -Dsonar.login=${SONAR_TOKEN}"
-                    sh 'sonar-scanner ${sonarscannerParams}'
+                    def sonarscannerParams = "-Dsonar.login=${SONAR_TOKEN}"
+                    sh '/opt/sonar-scanner/sonar-scanner-4.2.0.1873-linux/conf/bin/sonar-scanner ${sonarscannerParams}'
                 }
             }
         }
