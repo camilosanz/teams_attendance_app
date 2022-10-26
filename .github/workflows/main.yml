@@ -1,0 +1,25 @@
+name: CI github_actions_test
+
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      -
+        name: Checkout 
+        uses: actions/checkout@v3
+      - 
+        name: Test
+        run: coverage run -m pytest
+      - 
+        name: Coverage
+        run: coverage html
+      - 
+        name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: coverage/index.html
