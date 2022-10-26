@@ -18,12 +18,12 @@ pipeline {
         }
         stage('Run pytest') {
             steps {
-                sh 'coverage run -m pytest'
+                sh 'python3 -m coverage run -m pytest'
             }
         }
         stage('Run Coverage pytest') {
             steps {
-                sh 'coverage html'
+                sh 'python3 -m coverage html'
             }
         }
     }
