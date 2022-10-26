@@ -33,7 +33,6 @@ pipeline {
             steps {
                 sh "sonar-scanner -Dsonar.login=${SONAR_TOKEN}"
             }
-            }
         }
     }
 }
