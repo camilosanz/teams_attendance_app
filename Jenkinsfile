@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     def sonarscannerParams = "-Dsonar.projectName=AttendanceApp -Dsonar.projectKey=AttendanceApp -Dsonar.sources=. -Dsonar.login=${SONAR_TOKEN}"
-                    sh 'opt/sonar-scanner/bin/sonarscanner ${sonarscannerParams}'
+                    sh 'sonar-scanner ${sonarscannerParams}'
                 }
             }
         }
