@@ -35,9 +35,8 @@ pipeline {
                     curl -o sonarscanner.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip
                     unzip sonarscanner.zip -d /var/opt/sonar-scanner
                     rm sonarscanner.zip
-                    echo "sonar.host.url=http://localhost:3002" > /var/opt/sonar-scanner/sonar-scanner-4.2.0.1873-linux/conf/sonar-scanner.properties
-                    PATH="$PATH:/var/opt/sonar-scanner/sonar-scanner-4.2.0.1873-linux/bin"
-                    sonar-scanner -Dsonar.login=${SONAR_TOKEN}
+                    echo "sonar.host.url=http://10.0.2.15:3002" > /var/opt/sonar-scanner/sonar-scanner-4.2.0.1873-linux/conf/sonar-scanner.properties
+                    /var/opt/sonar-scanner/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner -Dsonar.login=${SONAR_TOKEN}
                 """
             }
         }
