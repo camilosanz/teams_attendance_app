@@ -1,5 +1,8 @@
 pipeline {
     agent {label 'DevOps'}
+    environment {
+                    SONAR_TOKEN = credentials('sonarqube')
+                }
     stages {
         stage('Install python') {
             steps {
@@ -28,9 +31,6 @@ pipeline {
         }
         stage('Static code analysis') {
             steps {
-                environment {
-                    SONAR_TOKEN = credentials('sonarqube')
-                }
                 script {
                     def sonarscannerParams = "-Dsonar.projectName=AttendanceApp -Dsonar.projectKey=AttendanceApp -Dsonar.sources=. -Dsonar.login=${SONAR_TOKEN}"
                     sh 'opt/sonar-scanner/bin/sonarscanner ${sonarscannerParams}'
