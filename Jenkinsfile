@@ -31,10 +31,8 @@ pipeline {
         }
         stage('Static code analysis') {
             steps {
-                script {
-                    def sonarscannerParams = "-Dsonar.login=${SONAR_TOKEN}"
-                    sh 'sonar-scanner ${sonarscannerParams}'
-                }
+                sh "sonar-scanner -Dsonar.login=${SONAR_TOKEN}"
+            }
             }
         }
     }
