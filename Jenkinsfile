@@ -31,8 +31,22 @@ pipeline {
         }
         stage('Static code analysis') {
             steps {
-                sh "sonar-scanner.bat -Dsonar.login=${SONAR_TOKEN}"
+                script {
+                    def sonarscanner = tool 'sonarqube-scanner-jala'
+                    def sonarscannerParams = "-Dsonar.projectName=AttendanceApp " + 
+                        "-Dsonar.projectKey=AttendanceApp " + 
+                        "-Dsonar.sources=. " +
+                        "-Dsonar.python.coverage.reportPaths=coverage.xml"
+                    withSonarQubeEnv('SonarQubeCE-Jala'){
+                        sh "${sonarscanner}/bin/sonar-scanner ${sonarscannerParams}"
+                    }
+                }
             }
         }
+        // stage('Static code analysis') {
+        //     steps {
+        //         sh "sonar-scanner -Dsonar.login=${SONAR_TOKEN}"
+        //     }
+        // }
     }
 }
